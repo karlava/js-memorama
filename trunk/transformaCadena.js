@@ -8,7 +8,9 @@ function transformaCadena(cadena,identificador)
    var i;
    var elemento;
    elemento = document.getElementById(identificador);
-   cadena.toLowerCase();   
+   if(cadena!=null)
+   {
+   cadena = cadena.toLowerCase(cadena);   
    for(i = 0; i<cadena.length;i++)
       {
          var imagen=document.createElement("img");
@@ -24,4 +26,7 @@ function transformaCadena(cadena,identificador)
          imagen.height="52";
          elemento.appendChild(imagen);
       }		
+    }
+    else
+       alert("No existe contenido que tranformar...")
 }
