@@ -11,9 +11,12 @@
 */
 function creaElemento(identificadorPadre,identificador,tipoElemento)
 {  
+	alert(identificadorPadre + ", " +tipoElemento);   
    var padre = document.getElementById(identificadorPadre);   
+	alert(padre);   
    var elemento=document.createElement(tipoElemento);
+   alert(elemento+padre);
+   elemento.setAttribute("id",identificador);   
    padre.appendChild(elemento);
-   elemento.setAttribute("id",identificador);
    return elemento; 
 }
