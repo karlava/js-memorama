@@ -19,15 +19,12 @@ function creaOpciones(cadena,separador,identificadorPadre)
    var pos;
    var subc;
    var elemento;
-   alert(cadena+"***"+identificadorPadre);
    for(i=0;i<cadena.length-1;)
    {      
       pos=i;      
       j=cadena.indexOf(separador,pos);
       subc = cadena.substring(i,j);
-      alert(subc+" "+idopc+" "+identificadorPadre);      
       elemento = creaElemento(identificadorPadre,"opc"+idopc,"option");
-      alert(elemento);
       creaAtributoElemento("opc"+idopc,"value",idopc);      
       creaElementoTexto("opc"+idopc,subc);
       i=j+1;
