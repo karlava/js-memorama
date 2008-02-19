@@ -3,6 +3,12 @@
 		<title>
 			Opciones Iniciales
 		</title>
+		<script src="creaElemento.js" type="text/javascript">
+		</script>
+		<script src="creaElementoTexto.js" type="text/javascript">
+		</script>		
+		<script src="creaOpciones.js" type="text/javascript">
+		</script>
 		<script src="creaAtributoElemento.js" type="text/javascript">
 		</script>
 		<script src="creaElementoImagen.js" type="text/javascript">
@@ -31,8 +37,9 @@
 	</head>
 	<body id="cuerpo" bgcolor="#7F7F7F" onload="iniciar()" style="text-align:center;">
 		<script language="JavaScript">
-		<!--	      
+		<!--	      		      
 		      transformaCadena("JUEGO DE MEMORAMA","cuerpo");
+		      creaOpciones("2*3;2*4;2*5;2*6;2*7;2*8;2*9;2*10;2*11;2*12;2*13;",";","tab");
 		-->
 		</script>
 		<br/><br/> 
@@ -44,8 +51,7 @@
 			</tr>
 			<tr>
 				<td><br/>Tablero:</td>
-				<td><br/><select name="tablero" size="1">
-					 	<option value="1">2*1</option>
+				<td><br/><select name="tablero" id="tab" size="1">
 					 </select><br/></td>
 			</tr>
 			</table>
