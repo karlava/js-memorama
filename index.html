@@ -25,30 +25,27 @@
 	   </table>
 		<hr></hr>
 	</head>
-	<body id="cuerpo" bgcolor="#7F7F7F" onload="iniciar()">
-	<center id="cuerpo1">
+	<body id="cuerpo" bgcolor="#7F7F7F" onload="iniciar()" style="text-align:center;">
 		<script language="JavaScript">
 		<!--	      
-		      transformaCadena("JUEGO DE MEMORAMA","cuerpo1");
-		   
+		      transformaCadena("JUEGO DE MEMORAMA","cuerpo");
 		-->
 		</script>
-		<br></br><br></br>
+		<br/><br/> 
 		<form action="/memorama.html" method="post">			
-			<table bgcolor="#E5E5E5">			
+			<table bgcolor="#E5E5E5" style="margin-left:40%;">			
 			<tr>
-				<td><br></br>Jugador:</td>
-				<td><br></br><input type="text" name="jugador" size="10"></td>
+				<td><br/>Jugador:</td>
+				<td><br/><input type="text" name="jugador" size="10"></td>
 			</tr>
 			<tr>
-				<td><br></br>Tablero:</td>
-				<td><br></br><select name="tablero" size="1">
+				<td><br/>Tablero:</td>
+				<td><br/><select name="tablero" size="1">
 					 	<option value="1">2*1</option>
-					 </select><br></br></td>
+					 </select><br/></td>
 			</tr>
 			</table>
-			<br><br><input type="submit" name="aceptar" value="Aceptar">
+			<br/><br/><input type="submit" name="aceptar" value="Aceptar">
 		</form>
-	</center>
 	</body>	
 </html>
