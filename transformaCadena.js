@@ -1,30 +1,28 @@
 
 /*
 	transformaCadena - proyecto
+	funcion que transforma una cadena de caracteres a su equivalente en las cartas de letras.
+	parametros:
+		cadena: Es la cadena de caracteres que se desea transformar.
+		identificadorPadre:Es el identificador del nodo padre-elemento en el que se van a agregar los hijos "img" 
 */
 
-function transformaCadena(cadena,identificador)
+function transformaCadena(cadena,identificadorPadre)
 {
    var i;
-   var elemento;
-   elemento = document.getElementById(identificador);
    if(cadena!=null)
    {
    cadena = cadena.toLowerCase(cadena);   
    for(i = 0; i<cadena.length;i++)
       {
-         var imagen=document.createElement("img");
          if(cadena.charAt(i)!=" ")
-         {                                 
-            imagen.src='carta0'+cadena.charAt(i)+'.gif';      
+         {                                 			
+				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta0'+cadena.charAt(i)+'.gif');                  
          }
          else
          {           
-            imagen.src='carta00.gif';
+				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta00.gif');            
          }
-         imagen.width="52";
-         imagen.height="52";
-         elemento.appendChild(imagen);
       }		
     }
     else
