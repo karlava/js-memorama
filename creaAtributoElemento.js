@@ -9,6 +9,4 @@ function creaAtributoElemento(identificador,nombreAtributo,valorAtributo)
 {  
    var elemento = document.getElementById(identificador);
    elemento.setAttribute(nombreAtributo,valorAtributo);
-   var elemento2 =  document.getElementById(identificador);
-   alert (elemento2.getAttribute(nombreAtributo));
 }
