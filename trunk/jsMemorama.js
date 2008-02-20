@@ -5,8 +5,7 @@
 
 var cartaVolteada = null;
 var cartaActual = null;
-var numeroCartas = 4;
-var cartasRestantes = numeroCartas;
+var cartasRestantes = 0;
 
 var memoramaHabilitado = true;
 
@@ -14,12 +13,16 @@ var memoramaHabilitado = true;
 var memorama = new Object;
 
 /* contiene el estado de las cartas: 1 boca arriba, 0 boca abajo; */
-var matrizMemorama = new Array(numeroCartas);
+var matrizMemorama;
 
-function inicializarMemorama( ) {
+function inicializarMemorama( contadorCartas ) {
 	var i;
 
-	for ( i=0; i<=numeroCartas; i++ ) {
+	numeroCartas = contadorCartas;
+
+	matrizMemorama = new Array(numeroCartas)
+
+	for ( i=0; i<numeroCartas; i++ ) {
 		matrizMemorama[i] = 0;
 	}
 
@@ -31,6 +34,8 @@ function barajearMemorama( ) {
 	memorama['2'] = 3;	
 	memorama['3'] = 1;	
 	memorama['4'] = 3;
+	memorama['5'] = 2;	
+	memorama['6'] = 2;
 }
 
 function mostrarCarta( idCarta ) {
@@ -92,23 +97,10 @@ function mostrarImagen( idImagen ) {
 	alert("con id: "+idImagen);
 	reemplazarImagen = document.getElementById('carta'+idImagen);
 	reemplazarImagen.src = 'carta'+memorama[idImagen]+'.gif';
+	alert("imagen: "+memorama[idImagen]);
 }
 
 function ocultarImagen( idImagen ) {
 	reemplazarImagen = document.getElementById('carta'+idImagen);
 	reemplazarImagen.src = 'carta0.gif';
 }
-
-/* Para correr funciones al cargar la pagina */
-function agregarEvento( objeto, tipo, funcion ){ 
-   if (objeto.addEventListener){ 
-      objeto.addEventListener( tipo, funcion, false );
-   }
-   else if (objeto.attachEvent){ 
-      objeto["e"+tipo+funcion] = funcion; 
-      objeto[tipo+funcion] = function(){ objeto["e"+tipo+funcion]( window.event ); } 
-      objeto.attachEvent( "on"+tipo, objeto[tipo+funcion] ); 
-   } 
-} 
-	
-agregarEvento( window, 'load', inicializarMemorama );
