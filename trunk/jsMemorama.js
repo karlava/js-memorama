@@ -7,10 +7,12 @@ var cartaVolteada = null;
 var cartaActual = null;
 var cartasRestantes = 0;
 
+
+
 var memoramaHabilitado = true;
 
 /* el "hashmap" del memorama */
-var memorama = new Object;
+var memorama;
 
 /* contiene el estado de las cartas: 1 boca arriba, 0 boca abajo; */
 var matrizMemorama;
@@ -21,6 +23,7 @@ function inicializarMemorama( contadorCartas ) {
 	numeroCartas = contadorCartas;
 
 	matrizMemorama = new Array(numeroCartas)
+	memorama = new Array(numeroCartas)
 
 	for ( i=0; i<numeroCartas; i++ ) {
 		matrizMemorama[i] = 0;
@@ -30,12 +33,12 @@ function inicializarMemorama( contadorCartas ) {
 }
 
 function barajearMemorama( ) {
-	memorama['1'] = 1;	
-	memorama['2'] = 3;	
-	memorama['3'] = 1;	
-	memorama['4'] = 3;
-	memorama['5'] = 2;	
-	memorama['6'] = 2;
+	memorama[0] = 'A';	
+	memorama[1] = 'B';	
+	memorama[2] = 'A';	
+	memorama[3] = 'B';
+	memorama[4] = 'C';	
+	memorama[5] = 'C';
 }
 
 function mostrarCarta( idCarta ) {
@@ -102,5 +105,22 @@ function mostrarImagen( idImagen ) {
 
 function ocultarImagen( idImagen ) {
 	reemplazarImagen = document.getElementById('carta'+idImagen);
-	reemplazarImagen.src = 'carta0.gif';
+	reemplazarImagen.src = 'carta.gif';
+}
+
+
+/* Algoritmo para desordenar un arreglo 
+  por: Ashley Pond V. http://sedition.com/perl/javascript-fy.html
+*/
+function fisherYates ( myArray ) {
+  var i = myArray.length;
+  if ( i == 0 ) return false;
+
+  while ( --i ) {
+     var j = Math.floor( Math.random() * ( i + 1 ) );
+     var tempi = myArray[i];
+     var tempj = myArray[j];
+     myArray[i] = tempj;
+     myArray[j] = tempi;
+   }
 }
