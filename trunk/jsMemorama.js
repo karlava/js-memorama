@@ -13,6 +13,19 @@ var memoramaHabilitado = true;
 /* el "hashmap" del memorama */
 var memorama = new Object;
 
+/* contiene el estado de las cartas: 1 boca arriba, 0 boca abajo; */
+var matrizMemorama = new Array(numeroCartas);
+
+function inicializarMemorama( ) {
+	var i;
+
+	for ( i=0; i<=numeroCartas; i++ ) {
+		matrizMemorama[i] = 0;
+	}
+
+	barajearMemorama( );
+}
+
 function barajearMemorama( ) {
 	memorama['1'] = 1;	
 	memorama['2'] = 3;	
@@ -21,21 +34,37 @@ function barajearMemorama( ) {
 }
 
 function mostrarCarta( idCarta ) {
+
+	/* Si la carta no esta boca arriba */
+	if ( matrizMemorama[idCarta] == 0 ) {
+
+	/* Si no esta esperando click para regresar las tarjetas a posicion anterior */
 	if ( memoramaHabilitado == true ) {
-		alert("sacaste carta");
 		cartaActual = idCarta;
+
 		if ( cartaVolteada != null ) {
+
 			if ( cartaActual != cartaVolteada ) {
 				mostrarImagen( cartaActual );
 			
 				if (memorama[cartaActual] == memorama[cartaVolteada]) {
 					alert("acertaste");
 					cartasRestantes -= 2;
+
+					matrizMemorama[cartaActual] = 1;
+					matrizMemorama[cartaVolteada] = 1;
+
+					cartaVolteada = null;
+					cartaActual = null;
+
+					if( cartasRestantes == 0 ) {
+						alert("felicidades, ganaste");
+					}
 				}
 				else {
 					alert("fallaste");
+					memoramaHabilitado = false;
 				}
-				memoramaHabilitado = false;
 			}
 			else {
 				alert("escoje otra");				
@@ -43,7 +72,6 @@ function mostrarCarta( idCarta ) {
 
 		}
 		else {
-			alert("primer carta");
 			cartaVolteada = cartaActual;
 			mostrarImagen( cartaActual );
 		}
@@ -55,7 +83,8 @@ function mostrarCarta( idCarta ) {
 		memoramaHabilitado = true;
 		cartaVolteada = null;
 		cartaActual = null;
-		alert("guardadas");
+	}
+
 	}
 }
 
@@ -82,4 +111,4 @@ function agregarEvento( objeto, tipo, funcion ){
    } 
 } 
 	
-agregarEvento( window, 'load', barajearMemorama );
+agregarEvento( window, 'load', inicializarMemorama );
