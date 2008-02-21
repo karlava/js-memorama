@@ -3,48 +3,56 @@
 	jsmemorama - proyecto
 */
 
+/* La carta que esta volteada del turno anterior */
 var cartaVolteada = null;
+/* La carta que se acaba de voltear en este turno */
 var cartaActual = null;
+
 var cartasRestantes = 0;
-
-
 
 var memoramaHabilitado = true;
 
-/* el "hashmap" del memorama */
-var memorama;
+/* el "hashmap" del memorama 
+   la posicion del arreglo es el id de la carta
+   el valor es la imagen
 
-/* contiene el estado de las cartas: 1 boca arriba, 0 boca abajo; */
-var matrizMemorama;
+	ej. memorama[0] = 'A';  la cartaO -> imagenA
+*/
+var arregloImagenesMemorama;
+
+/* contiene el estado de las cartas
+	1 boca arriba, 0 boca abajo; 
+*/
+var arregloEstadosMemorama;
 
 function inicializarMemorama( contadorCartas ) {
-	var i;
+	var i, j;
 
 	numeroCartas = contadorCartas;
 
-	matrizMemorama = new Array(numeroCartas)
-	memorama = new Array(numeroCartas)
+	arregloEstadosMemorama = new Array(numeroCartas);
+	arregloImagenesMemorama = new Array(numeroCartas);
 
 	for ( i=0; i<numeroCartas; i++ ) {
-		matrizMemorama[i] = 0;
+		arregloEstadosMemorama[i] = 0;
 	}
 
-	barajearMemorama( );
-}
-
-function barajearMemorama( ) {
-	memorama[0] = 'A';	
-	memorama[1] = 'B';	
-	memorama[2] = 'A';	
-	memorama[3] = 'B';
-	memorama[4] = 'C';	
-	memorama[5] = 'C';
+	/* Rellenarlo inicialmente con los pares de cartas
+		de la forma [0],[1] = 'A' [2],[3] = 'B', etc */
+	for ( i=0, j=0; i<numeroCartas; i+=2, j++ ) {
+		/* el codigo de la 'A' comienza en 65 */
+		arregloImagenesMemorama[i] = String.fromCharCode(65+j);
+		arregloImagenesMemorama[i+1] = String.fromCharCode(65+j);
+	}
+	alert("si");
+	/* Barajear Memorama */
+	fisherYates( arregloImagenesMemorama );
 }
 
 function mostrarCarta( idCarta ) {
 
 	/* Si la carta no esta boca arriba */
-	if ( matrizMemorama[idCarta] == 0 ) {
+	if ( arregloEstadosMemorama[idCarta] == 0 ) {
 
 	/* Si no esta esperando click para regresar las tarjetas a posicion anterior */
 	if ( memoramaHabilitado == true ) {
@@ -55,12 +63,11 @@ function mostrarCarta( idCarta ) {
 			if ( cartaActual != cartaVolteada ) {
 				mostrarImagen( cartaActual );
 			
-				if (memorama[cartaActual] == memorama[cartaVolteada]) {
-					alert("acertaste");
+				if (arregloImagenesMemorama[cartaActual] == arregloImagenesMemorama[cartaVolteada]) {
 					cartasRestantes -= 2;
 
-					matrizMemorama[cartaActual] = 1;
-					matrizMemorama[cartaVolteada] = 1;
+					arregloEstadosMemorama[cartaActual] = 1;
+					arregloEstadosMemorama[cartaVolteada] = 1;
 
 					cartaVolteada = null;
 					cartaActual = null;
@@ -70,7 +77,6 @@ function mostrarCarta( idCarta ) {
 					}
 				}
 				else {
-					alert("fallaste");
 					memoramaHabilitado = false;
 				}
 			}
@@ -85,7 +91,6 @@ function mostrarCarta( idCarta ) {
 		}
 	}
 	else {
-		alert("guardar cartas con ids: " + cartaVolteada + " " + cartaActual);
 		ocultarImagen( cartaVolteada );
 		ocultarImagen( cartaActual );
 		memoramaHabilitado = true;
@@ -97,10 +102,8 @@ function mostrarCarta( idCarta ) {
 }
 
 function mostrarImagen( idImagen ) {
-	alert("con id: "+idImagen);
 	reemplazarImagen = document.getElementById('carta'+idImagen);
-	reemplazarImagen.src = 'carta'+memorama[idImagen]+'.gif';
-	alert("imagen: "+memorama[idImagen]);
+	reemplazarImagen.src = 'carta'+arregloImagenesMemorama[idImagen]+'.gif';
 }
 
 function ocultarImagen( idImagen ) {
