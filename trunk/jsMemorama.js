@@ -29,6 +29,7 @@ function inicializarMemorama( contadorCartas ) {
 	var i, j;
 
 	numeroCartas = contadorCartas;
+	cartasRestantes = numeroCartas;
 
 	arregloEstadosMemorama = new Array(numeroCartas);
 	arregloImagenesMemorama = new Array(numeroCartas);
