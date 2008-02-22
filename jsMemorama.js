@@ -22,14 +22,16 @@
 */
 
 /* La carta que esta volteada del turno anterior */
-var cartaVolteada = null;
+var cartaVolteada;
 /* La carta que se acaba de voltear en este turno */
-var cartaActual = null;
+var cartaActual;
 
-var cartasRestantes = 0;
+var numeroCartas = 0;
+var cartasRestantes;
 
 /* Si el juego recibe los eventos o los ignora */
-var memoramaHabilitado = true;
+var memoramaHabilitado = false;
+var juegoCorriendo = false;
 
 /* el "hashmap" del memorama 
    la posicion del arreglo es el id de la carta
@@ -44,11 +46,51 @@ var arregloImagenesMemorama;
 */
 var arregloEstadosMemorama;
 
+function reiniciarJuego( ) {
+	var i;
+
+	juegoCorriendo = false;
+
+	detenerCrono( );
+	inicializarCrono( );
+
+	for ( i=0; i<numeroCartas; i++ ) {
+		arregloEstadosMemorama[i] = 0;
+		ocultarImagen( i )
+	}
+
+	iniciarJuego( );
+}
+
+function iniciarJuego( ) {
+	if( juegoCorriendo == false ) {
+	/* Barajear Memorama */
+		fisherYates( arregloImagenesMemorama );
+
+		cartaActual = null;
+		cartaVolteada = null;
+		cartasRestantes = numeroCartas;
+
+		iniciarCrono( );
+		memoramaHabilitado = true;
+		juegoCorriendo = true;
+	}
+}
+
+function finalizarJuego( ) {
+	detenerCrono();
+	
+	alert("¡¡¡Felicidades!!! Ganaste");
+
+	obtenerParcial();
+
+	memoramaHabilitado = false;
+}
+
 function inicializarMemorama( contadorCartas ) {
 	var i, j;
 
 	numeroCartas = contadorCartas;
-	cartasRestantes = numeroCartas;
 
 	arregloEstadosMemorama = new Array(numeroCartas);
 	arregloImagenesMemorama = new Array(numeroCartas);
@@ -64,9 +106,6 @@ function inicializarMemorama( contadorCartas ) {
 		arregloImagenesMemorama[i] = String.fromCharCode(65+j);
 		arregloImagenesMemorama[i+1] = String.fromCharCode(65+j);
 	}
-
-	/* Barajear Memorama */
-	fisherYates( arregloImagenesMemorama );
 }
 
 function mostrarCarta( idCarta ) {
@@ -92,17 +131,15 @@ function mostrarCarta( idCarta ) {
 					cartaVolteada = null;
 					cartaActual = null;
 
-					if( cartasRestantes == 0 ) {
-						alert("felicidades, ganaste");
+					if( cartasRestantes <= 1 ) {
+						finalizarJuego( );
 					}
 				}
 				else {
 					memoramaHabilitado = false;
 				}
 			}
-			else {
-				alert("escoje otra");				
-			}
+			/* else -> escogio la misma carta dos veces */
 
 		}
 		else {
