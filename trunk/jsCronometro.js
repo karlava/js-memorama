@@ -46,7 +46,6 @@ function inicializarCrono() {
 	textoCronoParcial = document.getElementById('textoCronoParcial');
 
 	textoCronoGlobal.value = '00:00:0';
-	textoCronoParcial.value = '00:00:0';
 }
 
 function mostrarCrono() {  
