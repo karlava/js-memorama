@@ -1,8 +1,18 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
 	<head> 
 		<title>
 			Opciones Iniciales
-		</title>
+		</title> 
+		<script src="creaCookies.js" type="text/javascript">
+		</script>
+		<script src="buscaParametro.js" type="text/javascript">
+		</script>		
+		<script src="agregaParametro.js" type="text/javascript">
+		</script>
+      <script src="verificaCookie.js" type="text/javascript">
+		</script>		
 		<script src="creaElemento.js" type="text/javascript">
 		</script>
 		<script src="creaElementoTexto.js" type="text/javascript">
@@ -13,7 +23,7 @@
 		</script>
 		<script src="transformaCadena.js" type="text/javascript">
 		</script>
-		<script language="JavaScript">
+		<script language="JavaScript" type="text/javascript">
 		<!--
 		   function iniciar()
 		   {		      
@@ -21,49 +31,42 @@
 		   }
 		-->
 		</script>
-		<hr></hr>
-		<table bgcolor="#E5E5E5">
+		<hr/>
+		<table>
 			<tr>
 			   <td>	   
-	   		   <a href="./instrucciones.html">Instrucciones</a>
-	   		   |<a href="#">Mejores Puntuaciones</a>
+	   		   <a href="instrucciones.html">Instrucciones</a>
+	   		   |<a href="puntuaciones.html">Mejores Puntuaciones</a>
 	   		   |<a href="#">Acerca de</a>
 	   		</td>
 	   	</tr>
 	   </table>
-		<hr></hr>
+		<hr/>
 	</head>
-	<body id="cuerpo" bgcolor="#7F7F7F" onload="iniciar()" style="text-align:center;">
-		<script language="JavaScript">
+	<body id="cuerpo" onload="iniciar()" style="text-align:center;">
+		<script language="JavaScript" type="text/javascript">
 		<!--	      		      
-		      transformaCadena("JUEGO DE MEMORAMA","cuerpo");
+		      transformaCadena("JUEGO DE MEMORAMA","cuerpo","52","52");		      
 		-->
 		</script>
 		<br/><br/> 
-		<form action="/memorama.html" method="post">			
-			<table bgcolor="#E5E5E5" style="margin-left:40%;">			
+		<form action="memorama.html" method="get">			
+			<table style="margin-left:40%;">			
 			<tr>
 				<td><br/>Jugador:</td>
-				<td><br/><input type="text" name="jugador" size="10"></td>
+				<td><br/><input type="text" name="jugador" size="10"/></td>
 			</tr>
 			<tr>
-				<td><br/>Tablero:</td>
-				<td><br/><select name="tablero" id="tab" size="1">
-				  				<option value="0">2*3</option>
-				  				<option value="0">2*4</option>
-				  				<option value="0">2*5</option>
-				  				<option value="0">2*6</option>
-				  				<option value="0">2*7</option>
-				  				<option value="0">2*8</option>
-				  				<option value="0">2*9</option>
-				  				<option value="0">2*10</option>
-				  				<option value="0">2*11</option>
-				  				<option value="0">2*12</option>
-				  				<option value="0">2*13</option>
-					      </select><br/></td>
+				<td><br/>#Filas:</td>
+				<td><br/><input type="text" name="filas" size="10"/></td>
 			</tr>
+			<tr>
+				<td><br/>#columnas:</td>
+				<td><br/><input type="text" name="columnas" size="10"/></td>
+			</tr>
+			
 			</table>
-			<br/><br/><input type="submit" name="aceptar" value="Aceptar">
+			<br/><br/><input type="submit" name="aceptar" value="Aceptar"/>
 		</form>
 	</body>	
 </html>
