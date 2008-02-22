@@ -1,6 +1,24 @@
 
 /*
-	jsmemorama - proyecto
+	@desc: Este codigo se encarga de la funcion del juego del memorama, en el ambito de jugarlo en si.
+	@author: Jorge Sampayo jdsampayo@gmail.com
+
+	Copyright: 2008 Jorge Sampayo, Rodolfo Anaya, Jazmine Aguilar
+
+	This file is part of js-memorama: http://code.google.com/p/js-memorama/
+
+    js-memorama is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    js-memorama is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /* La carta que esta volteada del turno anterior */
@@ -10,6 +28,7 @@ var cartaActual = null;
 
 var cartasRestantes = 0;
 
+/* Si el juego recibe los eventos o los ignora */
 var memoramaHabilitado = true;
 
 /* el "hashmap" del memorama 
@@ -39,13 +58,13 @@ function inicializarMemorama( contadorCartas ) {
 	}
 
 	/* Rellenarlo inicialmente con los pares de cartas
-		de la forma [0],[1] = 'A' [2],[3] = 'B', etc */
+		de la forma [0],[1] = 'A'; [2],[3] = 'B', etc */
 	for ( i=0, j=0; i<numeroCartas; i+=2, j++ ) {
 		/* el codigo de la 'A' comienza en 65 */
 		arregloImagenesMemorama[i] = String.fromCharCode(65+j);
 		arregloImagenesMemorama[i+1] = String.fromCharCode(65+j);
 	}
-	alert("si");
+
 	/* Barajear Memorama */
 	fisherYates( arregloImagenesMemorama );
 }
@@ -112,9 +131,8 @@ function ocultarImagen( idImagen ) {
 	reemplazarImagen.src = 'carta.gif';
 }
 
-
 /* Algoritmo para desordenar un arreglo 
-  por: Ashley Pond V. http://sedition.com/perl/javascript-fy.html
+   @author: Ashley Pond V. http://sedition.com/perl/javascript-fy.html
 */
 function fisherYates ( myArray ) {
   var i = myArray.length;

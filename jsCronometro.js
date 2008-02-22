@@ -1,6 +1,24 @@
+
 /*
-	Basado en el código de Iván Nieto Pérez de mundojavascript.com
-	Adaptado al memorama por Jorge Sampayo, jdsampayo[arroba]gmail.com
+	@desc: Crea las tags html que seran usadas en el juego, mediante el numero de columnas y de filas pasado a traves de la url.
+	@author: Jorge Sampayo jdsampayo@gmail.com; basado en el código de Iván Nieto Pérez de mundojavascript.com
+
+	Copyright: 2008 Jorge Sampayo, Rodolfo Anaya, Jazmine Aguilar
+
+	This file is part of js-memorama: http://code.google.com/p/js-memorama/
+
+    js-memorama is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    js-memorama is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 var cronoId = null;
