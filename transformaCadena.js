@@ -12,16 +12,16 @@ function transformaCadena(cadena,identificadorPadre)
    var i;
    if(cadena!=null)
    {
-   cadena = cadena.toLowerCase(cadena);   
+   cadena = cadena.toUpperCase(cadena);   
    for(i = 0; i<cadena.length;i++)
       {
          if(cadena.charAt(i)!=" ")
          {                                 			
-				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta0'+cadena.charAt(i)+'.gif');                  
+				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta'+cadena.charAt(i)+'.gif');                  
          }
          else
          {           
-				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta00.gif');            
+				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta.gif');            
          }
       }		
     }
