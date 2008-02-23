@@ -1,0 +1,74 @@
+<!--
+	@author: Rodolfo Anaya rodolfo010385@gmail.com
+
+	Copyright: 2008 Jorge Sampayo, Rodolfo Anaya, Jazmine Aguilar
+
+	This file is part of js-memorama: http://code.google.com/p/js-memorama/
+
+    js-memorama is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    js-memorama is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with js-memorama.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+		<title>Memorama - Opciones</title>
+
+		<link rel="stylesheet" type="text/css" href="estilo.css"/>
+	</head>
+
+	<body style="text-align:center;">
+		<h1>Memorama</h1>
+
+		<p>Por favor, selecciona el n&uacute;mero de columnas y filas para poder jugar.</p>
+
+		<h2>Opciones</h2>
+
+		<table border="1" style="width: 200px; margin: 1em auto 3em auto;">
+			<caption style="margin: 0 auto 0 auto">Con forma cuadrangular</caption>
+			<tbody>
+				<tr><td>2*2</td><td><a href="memorama.html?columnas=2&amp;filas=2">ir</a></td></tr>
+				<tr><td>3*3</td><td><a href="memorama.html?columnas=3&amp;filas=3">ir</a></td></tr>
+				<tr><td>4*4</td><td><a href="memorama.html?columnas=4&amp;filas=4">ir</a></td></tr>
+				<tr><td>5*5</td><td><a href="memorama.html?columnas=5&amp;filas=5">ir</a></td></tr>
+				<tr><td>6*6</td><td><a href="memorama.html?columnas=6&amp;filas=6">ir</a></td></tr>
+				<tr><td>7*7</td><td><a href="memorama.html?columnas=7&amp;filas=7">ir</a></td></tr>
+			</tbody>
+		</table>
+
+		<table border="1" style="width: 200px; margin: 1em auto 3em auto;">
+			<caption style="margin: 0 auto 0 auto">Con forma rectangular</caption>
+			<tbody>
+				<tr><td>4*3</td><td><a href="memorama.html?columnas=4&amp;filas=3">ir</a></td></tr>
+				<tr><td>5*4</td><td><a href="memorama.html?columnas=5&amp;filas=4">ir</a></td></tr>
+				<tr><td>6*5</td><td><a href="memorama.html?columnas=6&amp;filas=5">ir</a></td></tr>
+				<tr><td>7*5</td><td><a href="memorama.html?columnas=7&amp;filas=5">ir</a></td></tr>
+				<tr><td>8*6</td><td><a href="memorama.html?columnas=8&amp;filas=6">ir</a></td></tr>
+				<tr><td>10*5</td><td><a href="memorama.html?columnas=10&amp;filas=5">ir</a></td></tr>
+			</tbody>
+		</table>
+
+		<p>Custom:</p>
+		<fieldset style="width: 250px; margin: 0 auto 0 auto;">
+			<label for="columnas" >Columnas:</label>
+			<input id="columnas" type="text" size="1" value="0"/>
+			<label for="filas" >Filas:</label>
+			<input id="filas" type="text" size="1" value="0"/>
+			<input type="button" value="Ir" onclick="javascript: jugar()"/>
+		</fieldset>
+
+	</body>
+</html>
