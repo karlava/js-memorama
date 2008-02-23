@@ -29,8 +29,17 @@ var cartaActual;
 var numeroCartas = 0;
 var cartasRestantes;
 
+var puntaje;
+var intentos;
+var intentosFallidos;
+
+var destreza;
+var textoDestreza;
+
 /* Si el juego recibe los eventos o los ignora */
 var memoramaHabilitado = false;
+
+/* Si se esta jugando o esperando el inicio */
 var juegoCorriendo = false;
 
 /* el "hashmap" del memorama 
@@ -45,47 +54,6 @@ var arregloImagenesMemorama;
 	1 boca arriba, 0 boca abajo; 
 */
 var arregloEstadosMemorama;
-
-function reiniciarJuego( ) {
-	var i;
-
-	juegoCorriendo = false;
-
-	detenerCrono( );
-	inicializarCrono( );
-
-	for ( i=0; i<numeroCartas; i++ ) {
-		arregloEstadosMemorama[i] = 0;
-		ocultarImagen( i )
-	}
-
-	iniciarJuego( );
-}
-
-function iniciarJuego( ) {
-	if( juegoCorriendo == false ) {
-	/* Barajear Memorama */
-		fisherYates( arregloImagenesMemorama );
-
-		cartaActual = null;
-		cartaVolteada = null;
-		cartasRestantes = numeroCartas;
-
-		iniciarCrono( );
-		memoramaHabilitado = true;
-		juegoCorriendo = true;
-	}
-}
-
-function finalizarJuego( ) {
-	detenerCrono();
-	
-	alert("¡¡¡Felicidades!!! Ganaste");
-
-	obtenerParcial();
-
-	memoramaHabilitado = false;
-}
 
 function inicializarMemorama( contadorCartas ) {
 	var i, j;
@@ -108,6 +76,81 @@ function inicializarMemorama( contadorCartas ) {
 	}
 }
 
+function reiniciarJuego( ) {
+	var i;
+
+	juegoCorriendo = false;
+
+	detenerCrono( );
+	inicializarCrono( );
+
+	for ( i=0; i<numeroCartas; i++ ) {
+		arregloEstadosMemorama[i] = 0;
+		ocultarImagen( i )
+	}
+
+	textoDestreza.value = '0%';
+
+	iniciarJuego( );
+}
+
+function iniciarJuego( ) {
+	if( juegoCorriendo == false ) {
+	/* Barajear Memorama */
+		fisherYates( arregloImagenesMemorama );
+
+		cartaActual = null;
+		cartaVolteada = null;
+		cartasRestantes = numeroCartas;
+
+		iniciarCrono( );
+		memoramaHabilitado = true;
+		juegoCorriendo = true;
+
+		puntaje = 0;
+		intentos = 0;
+		intentosFallidos = 0;
+		destreza = 0;
+	}
+}
+
+function finalizarJuego( ) {
+	detenerCrono();
+	
+	obtenerPuntaje();
+
+	obtenerParcial();
+
+	memoramaHabilitado = false;
+}
+
+function obtenerPuntaje( ) {
+	var bonusNC, bonusD, bonusI, bonusT;
+	var subTotalD, subTotalI, subTotalT;
+
+	/* Bonus de numero de cartas */
+	bonusNC = numeroCartas * 1000;
+	
+	/* Bonus de destreza */
+	bonusD = destreza / 100;
+	subTotalD = bonusNC * bonusD;
+	
+	/* Bonus de tablero con numero impar de cartas */
+	bonusI = cartasRestantes * 3000;
+	subTotalI = subTotalD + bonusI;
+
+	/* Bonus de tiempo */
+	bonusT = ( minutos * 60 ) * 10;
+	bonusT += segundos * 10; 
+	bonusT += decimas;
+	bonusT *= 10;
+	subTotalT = subTotalI - bonusT;
+
+	puntuacion = ( bonusNC * bonusD ) + bonusI - bonusT;
+
+	alert('Bonus Numero Cartas: ' + bonusNC + '\n * ' + bonusD + ' de Destreza: = ' + subTotalD + '\n + ' + bonusI + ' de Bonus Impar: = ' + subTotalI + '\n - ' + bonusT + ' de Tiempo: = ' + subTotalT + '\n\n TU PUNTUACION = ' + puntuacion);
+}
+
 function mostrarCarta( idCarta ) {
 
 	/* Si la carta no esta boca arriba */
@@ -123,6 +166,9 @@ function mostrarCarta( idCarta ) {
 				mostrarImagen( cartaActual );
 			
 				if (arregloImagenesMemorama[cartaActual] == arregloImagenesMemorama[cartaVolteada]) {
+					intentos+=1;
+					calcularDestreza( );
+
 					cartasRestantes -= 2;
 
 					arregloEstadosMemorama[cartaActual] = 1;
@@ -153,18 +199,34 @@ function mostrarCarta( idCarta ) {
 		memoramaHabilitado = true;
 		cartaVolteada = null;
 		cartaActual = null;
+
+		intentos += 1;
+		intentosFallidos += 1;
+		calcularDestreza( );
 	}
 
+	}
+}
+
+function calcularDestreza( ) {
+	destreza = Math.round( (intentos - intentosFallidos) * 100 / intentos );
+
+	if( textoDestreza == null ) {
+		textoDestreza = document.getElementById('destreza');
+	}
+
+	if( ! isNaN(destreza) ) {
+		textoDestreza.value = destreza + '%';
 	}
 }
 
 function mostrarImagen( idImagen ) {
-	reemplazarImagen = document.getElementById('carta'+idImagen);
+	var reemplazarImagen = document.getElementById('carta'+idImagen);
 	reemplazarImagen.src = 'carta'+arregloImagenesMemorama[idImagen]+'.gif';
 }
 
 function ocultarImagen( idImagen ) {
-	reemplazarImagen = document.getElementById('carta'+idImagen);
+	var reemplazarImagen = document.getElementById('carta'+idImagen);
 	reemplazarImagen.src = 'carta.gif';
 }
 
