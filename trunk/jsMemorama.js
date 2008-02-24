@@ -115,13 +115,15 @@ function iniciarJuego( ) {
 }
 
 function finalizarJuego( ) {
+   var puntos;
 	detenerCrono();
 	
-	obtenerPuntaje();
+	puntos = obtenerPuntaje();
 
 	obtenerParcial();
 
 	memoramaHabilitado = false;
+	window.location = 'puntuaciones.html?puntos=' + puntos;
 }
 
 function obtenerPuntaje( ) {
@@ -149,6 +151,7 @@ function obtenerPuntaje( ) {
 	puntuacion = ( bonusNC * bonusD ) + bonusI - bonusT;
 
 	alert('Bonus Numero Cartas: ' + bonusNC + '\n * ' + bonusD + ' de Destreza: = ' + subTotalD + '\n + ' + bonusI + ' de Bonus Impar: = ' + subTotalI + '\n - ' + bonusT + ' de Tiempo: = ' + subTotalT + '\n\n TU PUNTUACION = ' + puntuacion);
+	return puntuacion;
 }
 
 function mostrarCarta( idCarta ) {
