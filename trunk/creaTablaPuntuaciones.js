@@ -21,6 +21,8 @@ function creaTablaPuntuaciones(numeroFil,numeroCol,nodoPadre,ancho,alto)
                   transformaCadena("  jugador  ","columna"+j,ancho,alto);
                   creaElemento("columna"+j,"esp","br");
                   creaElemento("columna"+j,"esp","br");
+                  creaElemento("columna"+j,"esp","hr");
+
                }
             else if(j==1 && i==0)
                {
@@ -28,6 +30,7 @@ function creaTablaPuntuaciones(numeroFil,numeroCol,nodoPadre,ancho,alto)
                   transformaCadena("  puntos  ","columna"+j,ancho,alto);
                   creaElemento("columna"+j,"esp","br");
                   creaElemento("columna"+j,"esp","br");
+                  creaElemento("columna"+j,"esp","hr");
                }
             else if(j==0)
                {
