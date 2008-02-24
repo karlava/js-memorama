@@ -7,7 +7,7 @@
 		identificadorPadre:Es el identificador del nodo padre-elemento en el que se van a agregar los hijos "img" 
 */
 
-function transformaCadena(cadena,identificadorPadre)
+function transformaCadena(cadena,identificadorPadre,ancho,alto)
 {
    var i;
    if(cadena!=null)
@@ -17,11 +17,11 @@ function transformaCadena(cadena,identificadorPadre)
       {
          if(cadena.charAt(i)!=" ")
          {                                 			
-				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta'+cadena.charAt(i)+'.gif');                  
+				creaElementoImagen(identificadorPadre,"carta"+i,ancho,alto,'carta'+cadena.charAt(i)+'.gif');                  
          }
          else
          {           
-				creaElementoImagen(identificadorPadre,"carta"+i,52,52,'carta.gif');            
+				creaElementoImagen(identificadorPadre,"carta"+i,ancho,alto,'carta00.gif');            
          }
       }		
     }
