@@ -1,5 +1,5 @@
 /*
-	transformaCadena - proyecto
+	creaElemento - proyecto
 	funcion que crea un nodo elemento "img" a un nodo padre que recive como parametro.
 	parametros:
 		IdentificadorPadre: Es el identificador del nodo padre al que se le creara un nodo hijo de tipo "tipoElemento".
